@@ -9,9 +9,12 @@
 
 <div class="form-container">
 <div class="image-logo">
-<img class="logo" src="IMG_0607.jpg">
-    <h1>Student Enrollment Forms</h1>
+  <img class="logo" src="jashslogo.jpg">
+  <h1>JOSE ABAD SANTOS HIGH SCHOOL</h1>
+  <h3>BASIC EDUCATION ENROLLMENT FORM</h3>
+  <p>THIS FORM IS NOT FOR SALE</p>
 </div>
+
 
     <form id="enrollmentForm">
       
@@ -26,7 +29,7 @@
         <div class="row"> 
             <div class="col">
                 <label>Birth Date:</label>
-                <input class="date" type="text" name="StudentBirthdate" placeholder="(mm/dd/yyyy)" required>
+                <input class="date" type="text" id="birthdate" name="StudentBirthdate" placeholder="MM/DD/YYYY" maxlength="10" required>
             </div>
             <div class="col"> 
                 <label>Gender: </label> 
@@ -44,7 +47,7 @@
         <div class="row">
           <div class="col">
             <label>Contact Number:</label>
-            <input class="tel" type="tel" name="StudentNumber" placeholder="000 000-0000" required>
+            <input class="tel" type="text" name="StudentNumber" maxlength="11" pattern="[0-9]{11}" placeholder="09XXXXXXXXX" required>
           </div>
           <div class="col">
             <label>Email Address:</label >
@@ -65,7 +68,7 @@
           </div>
           <div class="col">
             <label>Contact Number:</label>
-            <input class="tel" type="tel" name="GuardianNumber" placeholder="000 000-0000" required>
+            <input class="tel" type="text" name="GuardianNumber" maxlength="11" pattern="[0-9]{11}" placeholder="09XXXXXXXXX" required>
           </div>
           <div class="col">
             <label>Email Address:</label>
@@ -162,8 +165,22 @@
           </div>
         </div>
       
-        <label>Learner References Number (LRN) </label>
-        <input class="text" type="tel" name="LRN" placeholder="LRN" maxlength="12" required>
+        <div class="row">
+  <div class="col">
+    <label>Learner Reference Number (LRN)</label>
+    <input class="text" type="text" name="LRN" maxlength="12" pattern="[0-9]{12}" placeholder="12-digit LRN" required>
+  </div>
+
+  <div class="col">
+    <label>Previous Section</label>
+    <input class="text" type="text" name="PreviousSection" required>
+  </div>
+
+  <div class="col">
+    <label>General Average</label>
+    <input class="text" type="text" name="GeneralAverage" pattern="^(100|[7-9][0-9])(\.\d{1,2})?$" placeholder="70 - 100" required>
+  </div>
+</div>
 
       <h2> Belonging to any Indigenous Peoples (IP) Community</h2>
       <div class="row">
@@ -195,8 +212,21 @@
     </div>
 
     <br>
+<label style="margin-top:20px;">
+  <input type="checkbox" id="privacyCheck" required>
+  I confirm that the information provided is accurate and may be used for enrollment purposes.
+</label>
 
-      <button id="submitBtn" type="submit">Submit Form</button>
+      <button id="submitBtn" type="submit">Done</button>
+
+<div id="previewModal" class="modal">
+  <div class="modal-content">
+    <h2>Preview Information</h2>
+    <div id="previewContent"></div>
+    <button id="confirmSubmit">Confirm & Submit</button>
+  </div>
+</div>
+
       
 </form> 
 
@@ -204,29 +234,66 @@
 </div>
 
 <script>
-  const scriptURL = 'https://script.google.com/macros/s/AKfycbya1EvkUt1ugwboZKRZqwk9wszs6tj4cUgXq8zGnY_uuWtSdr0pOIvxRTL8tPoT3sAE/exec';
-  const form = document.getElementById('enrollmentForm');
 
-  form.addEventListener('submit', e => {
-    e.preventDefault(); 
-    
-    const btn = document.getElementById('submitBtn');
-    const originalText = btn.innerText;
-    btn.innerText = "Submitting...";
-    btn.disabled = true;
+const scriptURL = 'https://script.google.com/macros/s/AKfycbya1EvkUt1ugwboZKRZqwk9wszs6tj4cUgXq8zGnY_uuWtSdr0pOIvxRTL8tPoT3sAE/exec';
+const form = document.getElementById('enrollmentForm');
+const modal = document.getElementById('previewModal');
+const preview = document.getElementById('previewContent');
 
-    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-      .then(response => {
-          alert("Success! Your enrollment form has been submitted.");
-          window.location.href = "index.html"; 
-      })
-      .catch(error => {
-          alert('Error!', error.message);
-          btn.innerText = originalText;
-          btn.disabled = false;
-      });
+
+document.getElementById("birthdate").addEventListener("input", function(e){
+  let value = e.target.value.replace(/\D/g, '');
+  if(value.length > 2) value = value.slice(0,2) + "/" + value.slice(2);
+  if(value.length > 5) value = value.slice(0,5) + "/" + value.slice(5,9);
+  e.target.value = value;
+});
+
+document.querySelectorAll('input[name="StudentNumber"], input[name="GuardianNumber"]').forEach(input => {
+  input.addEventListener("input", function(){
+    this.value = this.value.replace(/\D/g, '').slice(0,11);
   });
-</script>
+});
 
-</body>
-</html>
+document.querySelector('input[name="LRN"]').addEventListener("input", function(){
+  this.value = this.value.replace(/\D/g, '').slice(0,12);
+});
+
+form.addEventListener('submit', function(e){
+  e.preventDefault();
+
+  if(!document.getElementById("privacyCheck").checked){
+    alert("You must agree to the privacy policy.");
+    return;
+  }
+
+  const formData = new FormData(form);
+  let html = "";
+
+  for(let pair of formData.entries()){
+    html += "<p><strong>" + pair[0] + ":</strong> " + pair[1] + "</p>";
+  }
+
+  preview.innerHTML = html;
+  modal.style.display = "flex";
+});
+
+document.getElementById("confirmSubmit").onclick = function(){
+
+  const btn = document.getElementById('confirmSubmit');
+  btn.innerText = "Submitting...";
+  btn.disabled = true;
+
+  fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+  .then(response => {
+    alert("Success! Your enrollment form has been submitted.");
+    window.location.href = "index.html";
+  })
+  .catch(error => {
+    alert('Error!', error.message);
+    btn.innerText = "Done";
+    btn.disabled = false;
+  });
+
+};
+
+</script>
