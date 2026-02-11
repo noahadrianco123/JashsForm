@@ -1,4 +1,4 @@
-/* GENERAL RESET */
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -18,21 +18,19 @@ body {
   transition: background 0.5s ease-in-out;
 }
 
-/* BACKGROUND ANIMATION */
 @keyframes changeBG {
   0% { background-image: url('Bgimg1.jpg'); }
   50% { background-image: url('Bgimg2.jpg'); }
   100% { background-image: url('Bgimg3.jpg'); }
 }
 
-/* HEADER */
 .header {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   background: black;
   padding: 15px 30px;
+  flex-wrap: nowrap;
 }
 
 .abadlogo {
@@ -47,12 +45,13 @@ body {
 
 .header div {
   text-align: center;
-  flex: 1 1 100%; /* Makes the text block responsive */
-  margin: 10px 0;
+  flex: 1;
+  margin: 0 20px;
 }
 
 .header h1 {
   font-size: 1.4rem;
+  line-height: 1.2;
 }
 
 .subtext {
@@ -61,138 +60,40 @@ body {
   margin-top: 5px;
 }
 
-/* NAVIGATION */
-.nav-container {
-  background: #1a1a1a;
-  width: 100%;
-  padding: 10px 0;
-}
-
-.nav-container nav {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-}
-
-.nav-container a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 16px;
-  transition: 0.3s;
-}
-
-.nav-container a:hover {
-  color: #ffd700;
-}
-
-/* MAIN HERO SECTION */
-.main {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-}
-
-.hero {
-  background: rgba(0, 0, 0, 0.65);
-  backdrop-filter: blur(8px);
-  padding: 30px 20px;
-  border-radius: 15px;
-  text-align: center;
-  max-width: 90%;
-  width: 800px;
-}
-
-.hero h2 {
-  color: #ffd700;
-  font-size: 2rem;
-  margin-bottom: 20px;
-}
-
-.hero p {
-  margin-bottom: 25px;
-  font-size: 1rem;
-}
-
-button {
-  padding: 12px 30px;
-  border: none;
-  border-radius: 40px;
-  font-weight: bold;
-  cursor: pointer;
-  background: white;
-  color: #0A2540;
-  transition: 0.3s;
-}
-
-button:hover {
-  background: #ffd700;
-  transform: scale(1.05);
-}
-
-/* FOOTER */
-.footer {
-  text-align: center;
-  background: rgba(0, 0, 0, 0.6);
-  padding: 20px;
-  margin-top: auto;
-  font-size: 0.9rem;
-}
-
-/* MEDIA QUERIES FOR RESPONSIVENESS */
-
-/* Tablets */
 @media (max-width: 768px) {
   .header {
-    flex-direction: column;
-    text-align: center;
+    padding: 10px 20px;
   }
-  
-  .header div {
-    flex: 1 1 auto;
-  }
-  
-  .hero h2 {
-    font-size: 1.8rem;
-  }
-
-  .hero p {
-    font-size: 0.95rem;
-  }
-
-  button {
-    padding: 10px 25px;
-  }
-}
-
-/* Mobile Phones */
-@media (max-width: 480px) {
   .header h1 {
     font-size: 1.2rem;
   }
-  
+  .subtext {
+    font-size: 0.75rem;
+  }
+  .abadlogo {
+    height: 3.5em;
+  }
+  .depedlogo {
+    height: 2.5em;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .header div {
+    margin: 10px 0;
+  }
+  .abadlogo, .depedlogo {
+    margin: 5px 0;
+  }
+  .header h1 {
+    font-size: 1rem;
+  }
   .subtext {
     font-size: 0.7rem;
-  }
-  
-  .hero h2 {
-    font-size: 1.5rem;
-  }
-
-  .hero p {
-    font-size: 0.9rem;
-  }
-
-  button {
-    padding: 8px 20px;
-    font-size: 0.9rem;
-  }
-
-  .nav-container nav {
-    flex-direction: column;
-    gap: 10px;
   }
 }
