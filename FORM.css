@@ -66,11 +66,12 @@ label {
   font-size: 0.95rem;
 }
 
-/* INPUT STYLING */
+
 input[type="text"],
 input[type="email"],
 input[type="tel"],
 input[type="date"],
+input[type="number"],
 select,
 .input {
   width: 100%;
@@ -198,3 +199,19 @@ button[type="submit"]:hover {
   cursor: pointer;
   transition: 0.3s;
 }
+#cancelSubmit {
+  width: 30%;
+  padding: .2em;
+  background-color: #0A2540;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  margin-top: 40px;
+  cursor: pointer;
+}
+  cursor: pointer;
+  transition: 0.3s;
+}
+
