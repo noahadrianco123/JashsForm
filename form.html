@@ -22,14 +22,22 @@
 
         <label>Student Name:</label>
         <div class="row">
-          <input class="text" type="text" name="StudentFirstName" placeholder="First Name" required>
           <input class="text" type="text" name="StudentLastName" placeholder="Last Name" required>
+          <input class="text" type="text" name="StudentFirstName" placeholder="First Name" required>
+          <input class="text" type="text" name="StudentMiddleName" placeholder="Middle Name" required>
         </div>
-
-        <div class="row"> 
+             <div class="col">
+    <label>Learner Reference Number (LRN)</label>
+    <input class="text" type="text" name="LRN" maxlength="12" pattern="[0-9]{12}" placeholder="12-digit LRN" required>
+  </div>
+   <div class="row"> 
             <div class="col">
                 <label>Birth Date:</label>
                 <input class="date" type="text" id="birthdate" name="StudentBirthdate" placeholder="MM/DD/YYYY" maxlength="10" required>
+            </div>
+             <div class="col">
+                <label>Date of SHS Admission:</label>
+                <input class="date" type="text" id="SHSadmission" name="DateSHSadmission" placeholder="MM/DD/YYYY" maxlength="10" required>
             </div>
             <div class="col"> 
                 <label>Gender: </label> 
@@ -39,68 +47,29 @@
                 </div> 
             </div> 
         </div>
-
-
-        <label>Student Address:</label>
-        <input class="text" type="text" name="StudentAdress" placeholder="Full Address" required>
-
-        <div class="row">
-          <div class="col">
-            <label>Contact Number:</label>
-            <input class="tel" type="text" name="StudentNumber" maxlength="11" pattern="[0-9]{11}" placeholder="09XXXXXXXXX" required>
-          </div>
-          <div class="col">
-            <label>Email Address:</label >
-            <input class="email" type="email" placeholder="name@gmail.com" name="StudentEmail" required>
-          </div> 
-        </div>
-
-      
-        <h2>Parent/Guardian Information</h2>
-
-        <label>Parent/Guardian Name:</label>
-        <input class="text" type="text" name="GuardianFullName" placeholder="Full Name" required>
-
-        <div class="row">
-          <div class="col">
-            <label>Relationship To Student:</label>
-            <input class="text" type="text" name="GuardianRelation" placeholder="Example: Father/Mother" required>
-          </div>
-          <div class="col">
-            <label>Contact Number:</label>
-            <input class="tel" type="text" name="GuardianNumber" maxlength="11" pattern="[0-9]{11}" placeholder="09XXXXXXXXX" required>
-          </div>
-          <div class="col">
-            <label>Email Address:</label>
-            <input class="email" type="email" name="GuardianEmail" placeholder="name@gmail.com" required >
-          </div>
-        </div>
-
-      
-        <h2 class="h2">Academic Information</h2>
-        
-        <label>Top 3 Preferred Cluster/Strand </label>
-        <input class="text" type="text" name="Top3Strands" placeholder="Example: STEM, HUMSS, ASH" required>
-
-        <br>
-        
-        <div class="row">
-          <div class="col">
-            
-            <label for="Preferred Cluster">Preferred Academic Clusters</label>
-            <select id="grade" name="PreferredCluster">
-                <option value="" disabled selected>Select Academic Clusters</option>
+<div class="col">
+    <label>General Average</label>
+    <input class="text" type="text" name="GeneralAverage" pattern="^(100|[7-9][0-9])(\.\d{1,2})?$" placeholder="70 - 100" required>
+  </div>
+<label for="Track">TRACK (ACADEMIC / TECHPRO)</label>
+            <select id="Track" name="PreferredTrack">
+                <option value="" disabled selected>Select Track</option>
+                <option value="ACADEMIC">Academic</option>
+                <option value="TECHPRO">Techpro</option>
+            </select>
+            <div id="AcademicOption" style="display: none;">
+    <label for="AcademicSelect">Please specify:</label>
+ <select id="AcademicSelect" name="AcademicTrack">
+                                <option value="" disabled selected>Select Academic Clusters</option>
                 <option value="ASSH">Arts, Social Sciences, and Humanities (ASSH)</option>
                 <option value="STEM">Science, Technology, Engineering, and Mathematics (STEM)</option>
                 <option value="BE">Business and Entrepreneurship (BE)</option>
             </select>
-            
-          </div>
-          <div class="col">
-            
-            <label>Preferred TechPro Clusters:</label>
-            <select name="TechProCluster">
-              <option value="" disabled selected>Select TechPro Clusters</option>
+</div>
+         <div id="TechproOption" style="display: none;">
+    <label for="TechproSelect">Please specify:</label>
+ <select id="TechproSelect" name="TechproTrack">
+                <option value="" disabled selected>Select TechPro Clusters</option>
               <optgroup label=" Support and Computer Programming Technologies (ICT)">
                 <option>Computer Programming (Java) (NC IIl)</option>
                 <option>Programming (.Net Technology) (NC III)</option>
@@ -123,10 +92,10 @@
                 <option>Manual Metal Arc Welding</option>
               </optgroup>
             </select>
-        </div>
-        </div>
-        
-        <div class="section-box">
+</div>
+<label>Top 3 Career Pathway</label>
+        <input class="text" type="text" name="Top3Strands" placeholder="Example: Engineering, Nursing. " required>
+<div class="section-box">
              <label>After grade 12, what is your most preferred curriculum exit?</label>
              <div class="radio-group-vertical">
                 <label><input type="radio" name="CurriculumExit" value="Higher Education"> Higher Education (college/university)</label>
@@ -137,51 +106,49 @@
              
              <label>Remarks:</label>
              <input class="text" type="text" name="Remarks" placeholder="Any remarks...">
-
-             <br><br>
-
-             <label>Track Specification:</label>
-             <div class="radio-group-vertical">
-                <label><input type="radio" name="TrackType" value="PURE ACADEMIC"> PURE ACADEMIC TRACK</label>
-                <label><input type="radio" name="TrackType" value="ACADEMIC WITH DOORWAY"> ACADEMIC TRACK WITH DOORWAY</label>
-                <label><input type="radio" name="TrackType" value="PURE TECHPRO"> PURE TECHPRO TRACK</label>
-                <label><input type="radio" name="TrackType" value="TECHPRO WITH DOORWAY"> TECHPRO TRACK WITH DOORWAY</label>
-             </div>
-        </div>
-        <br>
-        
-        <div class="row">
-          <div class="col">
-            <label for="StudentGradeProgram">Grade/Program Applying For:</label>
-            <select id="grade" name="StudentGradeProgram" required>
-                <option value="" disabled selected>Select Grade</option>
-                <option value="Grade 11">Grade 11</option>
-                <option value="Grade 12">Grade 12</option>
-            </select>
-          </div>
-          <div class="col">
+</div>
+<label>Date of Graduation/Competion:</label>
+                <input class="date" type="text" id="DateOfGraduation" name="StudentDateOfGraduation/Competion" placeholder="MM/DD/YYYY" maxlength="10" required>
+                 <div class="col">
             <label>Previous School:</label>
             <input class="text" type="text" name="StudentLastSchool" placeholder="Full Name" required>
           </div>
-        </div>
-      
-        <div class="row">
-  <div class="col">
-    <label>Learner Reference Number (LRN)</label>
-    <input class="text" type="text" name="LRN" maxlength="12" pattern="[0-9]{12}" placeholder="12-digit LRN" required>
-  </div>
+           <label>School Address:</label>
+        <input class="text" type="text" name="SchoolAdress" placeholder="Full Address" required>
 
-  <div class="col">
-    <label>Previous Section</label>
+          
+        <label>Student Address:</label>
+        <input class="text" type="text" name="StudentAdress" placeholder="Full Address" required>
+<label>Barangay Number:</label>
+        <input class="number" type="number" name="StudentBarangayNumber" placeholder="" required>
+        <div class="row">
+          <div class="col">
+            <label>Contact Number:</label>
+            <input class="tel" type="text" name="StudentNumber" maxlength="11" pattern="[0-9]{11}" placeholder="09XXXXXXXXX" required>
+          </div>
+          <div class="col">
+    <label>Previous Section (Grade 10)</label>
     <input class="text" type="text" name="PreviousSection" required>
   </div>
+        <h2>Parent/Guardian Information</h2>
 
-  <div class="col">
-    <label>General Average</label>
-    <input class="text" type="text" name="GeneralAverage" pattern="^(100|[7-9][0-9])(\.\d{1,2})?$" placeholder="70 - 100" required>
-  </div>
-</div>
+        <label>Parent/Guardian Name:</label>
+        <input class="text" type="text" name="GuardianFullName" placeholder="Full Name" required>
 
+        <div class="row">
+          <div class="col">
+            <label>Relationship To Student:</label>
+            <input class="text" type="text" name="GuardianRelation" placeholder="Example: Father/Mother" required>
+          </div>
+          <div class="col">
+            <label>Contact Number:</label>
+            <input class="tel" type="text" name="GuardianNumber" maxlength="11" pattern="[0-9]{11}" placeholder="09XXXXXXXXX" required>
+          </div>
+          <div class="col">
+            <label>Email Address:</label>
+            <input class="email" type="email" name="GuardianEmail" placeholder="name@gmail.com" required >
+          </div>
+        </div>
       <h2> Belonging to any Indigenous Peoples (IP) Community</h2>
       <div class="row">
           <div class="col">
@@ -221,6 +188,7 @@
 
 <div id="previewModal" class="modal">
   <div class="modal-content">
+    <button id="cancelSubmit" type="button">Cancel Submit</button>
     <h2>Preview Information</h2>
     <div id="previewContent"></div>
     <button id="confirmSubmit">Confirm & Submit</button>
@@ -240,14 +208,38 @@ const form = document.getElementById('enrollmentForm');
 const modal = document.getElementById('previewModal');
 const preview = document.getElementById('previewContent');
 
+const selectTrack = document.getElementById('Track');
+const AcademicTrack = document.getElementById('AcademicOption');
+const TechproTrack = document.getElementById('TechproOption');
 
+selectTrack.addEventListener('change', function() {
+    AcademicTrack.style.display = 'none';
+    TechproTrack.style.display = 'none';
+
+    if (this.value === 'ACADEMIC') {
+        AcademicTrack.style.display = 'block';
+    } else if (this.value === 'TECHPRO') {
+        TechproTrack.style.display = 'block';
+    }
+});
 document.getElementById("birthdate").addEventListener("input", function(e){
   let value = e.target.value.replace(/\D/g, '');
   if(value.length > 2) value = value.slice(0,2) + "/" + value.slice(2);
   if(value.length > 5) value = value.slice(0,5) + "/" + value.slice(5,9);
   e.target.value = value;
 });
-
+document.getElementById("DateOfGraduation").addEventListener("input", function(e){
+  let value = e.target.value.replace(/\D/g, '');
+  if(value.length > 2) value = value.slice(0,2) + "/" + value.slice(2);
+  if(value.length > 5) value = value.slice(0,5) + "/" + value.slice(5,9);
+  e.target.value = value;
+});
+document.getElementById("SHSadmission").addEventListener("input", function(e){
+  let value = e.target.value.replace(/\D/g, '');
+  if(value.length > 2) value = value.slice(0,2) + "/" + value.slice(2);
+  if(value.length > 5) value = value.slice(0,5) + "/" + value.slice(5,9);
+  e.target.value = value;
+});
 document.querySelectorAll('input[name="StudentNumber"], input[name="GuardianNumber"]').forEach(input => {
   input.addEventListener("input", function(){
     this.value = this.value.replace(/\D/g, '').slice(0,11);
@@ -276,7 +268,9 @@ form.addEventListener('submit', function(e){
   preview.innerHTML = html;
   modal.style.display = "flex";
 });
-
+document.getElementById('cancelSubmit').addEventListener('click', function() {
+  modal.style.display = "none";
+});
 document.getElementById("confirmSubmit").onclick = function(){
 
   const btn = document.getElementById('confirmSubmit');
