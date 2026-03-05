@@ -30,6 +30,13 @@
     <label>Learner Reference Number (LRN)</label>
     <input class="text" type="text" name="LRN" maxlength="12" pattern="[0-9]{12}" placeholder="12-digit LRN" required>
   </div>
+  <div class="col"> 
+                <label>Gender: </label> 
+                <div class="gender"> 
+                    <label><input type="radio" name="Studentgender" value="Male"> Male</label>
+                    <label><input type="radio" name="Studentgender" value="Female"> Female</label>
+                </div> 
+            </div> 
    <div class="row"> 
             <div class="col">
                 <label>Birth Date:</label>
@@ -39,13 +46,6 @@
                 <label>Date of SHS Admission:</label>
                 <input class="date" type="text" id="SHSadmission" name="DateSHSadmission" placeholder="MM/DD/YYYY" maxlength="10" required>
             </div>
-            <div class="col"> 
-                <label>Gender: </label> 
-                <div class="gender"> 
-                    <label><input type="radio" name="Studentgender" value="Male"> Male</label>
-                    <label><input type="radio" name="Studentgender" value="Female"> Female</label>
-                </div> 
-            </div> 
         </div>
 <div class="col">
     <label>General Average</label>
@@ -116,29 +116,20 @@
         <input class="text" type="text" name="SchoolAdress" placeholder="Full Address" required>
 
           
-        <label>Student Address:</label>
-        <input class="text" type="text" name="StudentAdress" placeholder="Full Address" required>
+        <label>Complete Address:</label>
+        <input class="text" type="text" name="CompleteAdress" placeholder="Full Address" required>
  <label>Previous Section (Grade 10)</label>
     <input class="text" type="text" name="PreviousSection" required>
         <label>Barangay Number:</label>
         <input class="number" type="number" name="StudentBarangayNumber" placeholder="" required>
         <div class="row">
           <div class="col">
-            <label>Contact Number:</label>
-            <input class="tel" type="text" name="StudentNumber" maxlength="11" pattern="[0-9]{11}" placeholder="09XXXXXXXXX" required>
-          </div>
-          <div class="col">
+
   </div>
         <h2>Parent/Guardian Information</h2>
 
         <label>Parent/Guardian Name:</label>
         <input class="text" type="text" name="GuardianFullName" placeholder="Full Name" required>
-
-        <div class="row">
-          <div class="col">
-            <label>Relationship To Student:</label>
-            <input class="text" type="text" name="GuardianRelation" placeholder="Example: Father/Mother" required>
-          </div>
           <div class="col">
             <label>Contact Number:</label>
             <input class="tel" type="text" name="GuardianNumber" maxlength="11" pattern="[0-9]{11}" placeholder="09XXXXXXXXX" required>
@@ -288,5 +279,8 @@ document.getElementById("confirmSubmit").onclick = function(){
   });
 
 };
+
+</script>
+
 
 </script>
